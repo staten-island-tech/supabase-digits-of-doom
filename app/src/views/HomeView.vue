@@ -1,9 +1,9 @@
-<script setup lang="ts">
-import TheWelcome from '../components/TheWelcome.vue'
+<template>
+  <div><HomeInstruction></HomeInstruction></div>
+</template>
+
+<script setup>
+import HomeInstruction from '@/components/HomeInstruction.vue'
 </script>
 
-<template>
-  <main>
-    <TheWelcome />
-  </main>
-</template>
+<style scoped></style>
