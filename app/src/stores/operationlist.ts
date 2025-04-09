@@ -22,12 +22,12 @@ const operationsList = [
     {
         name: 'Wind Gust Doubler',
         element: 'air',
-        operation: 'double',
+        operation: 'doubler',
     },
     {
         name: 'Water Surge Tripler',
         element: 'water',
-        operation: 'triple',
+        operation: 'tripler',
     },
     {
         name: 'Shadow Inverter',
@@ -105,3 +105,11 @@ const operationsList = [
         operation: 'push', // Pushes the number in a specific direction (e.g., increase or decrease)
     }
 ];
+
+function add(){
+
+}
+
+function subtract() {
+
+}
