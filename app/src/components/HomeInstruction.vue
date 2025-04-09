@@ -1,7 +1,8 @@
 <template>
   <div class="fixed inset-0 flex items-center justify-center z-50 backdrop-blur-[2px]">
-    <!-- Form Container -->
-    <div class="bg-white p-[2rem] rounded-lg shadow-lg max-w-[30rem] w-full space-y-[1.5rem]">
+    <div
+      class="bg-white p-[2rem] rounded-lg shadow-lg max-w-[30rem] w-full space-y-[1.5rem] items-center"
+    >
       <h1 class="text-[1.875rem] font-bold text-center text-gray-800">Login</h1>
 
       <div class="space-y-[1rem]">
@@ -25,17 +26,25 @@
           class="w-full px-[1.25rem] py-[0.75rem] border rounded focus:ring-[0.125rem] focus:ring-green-500 bg-gray-100"
         />
       </div>
-
-      <!-- Login Button -->
       <button
         type="submit"
         class="w-full h-[3rem] text-[1.125rem] font-semibold text-white bg-green-600 rounded hover:bg-green-700 focus:ring-[0.125rem] focus:ring-green-500"
       >
         Login
       </button>
+      <button
+        type="submit"
+        class="w-[80%] h-[2.4rem] text-[1.125rem] font-semibold text-white bg-red-600 rounded hover:bg-red-700 focus:ring-[0.125rem] focus:ring-red-500"
+      >
+        Sign Up
+      </button>
     </div>
   </div>
 </template>
 <script setup></script>
 
-<style scoped></style>
+<style scoped>
+* {
+  margin: 0.5rem;
+}
+</style>
