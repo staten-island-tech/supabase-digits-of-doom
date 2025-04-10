@@ -106,10 +106,29 @@ const operationsList = [
     }
 ];
 
-function add(){
+let number = 0;
+let multiplacationdmg = 2;
+let divisiondmg = 0;
+let additiondmg = 5;
+let subtractiondmg = 0;
 
+function add(){
+number =+ additiondmg;
+console.log(number);
 }
 
 function subtract() {
-
+number =- subtractiondmg;
+console.log(number);
 }
+function multiply() {
+number = number * multiplacationdmg;
+console.log(number);
+}
+function division() {
+    number = number / multiplacationdmg;
+    console.log(number);
+    }
+
+add();
+multiply();
