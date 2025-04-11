@@ -108,19 +108,19 @@ const operationsList = [
     }
 ];
 
-let number = 0;
+let number = 1;
 let multiplacationdmg = 2;
 let divisiondmg = 0;
 let additiondmg = 5;
-let subtractiondmg = 0;
+let subtractiondmg = 15.5;
 
 function add(){
-number =+ additiondmg;
+number += additiondmg;
 console.log(number);
 }
 
 function subtract() {
-number =- subtractiondmg;
+number -= subtractiondmg;
 console.log(number);
 }
 function multiply() {
@@ -135,9 +135,16 @@ function distort() {
   number = number * (Math.random() * 3);
   console.log(number);
   }
+function invert() {
+  number = -number;
+  console.log(number);
+}
 add();
+subtract();
 multiply();
+invert();
 distort();
+
 </script>
 
 <template>
