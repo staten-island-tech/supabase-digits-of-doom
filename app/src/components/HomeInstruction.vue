@@ -45,32 +45,34 @@
   </div>
 </template>
 
-<script>
-import { ref } from 'vue'
-import { supabase } from '@/supabase'
-export default {
-  setup() {
-    const email = ref('')
-    const password = ref('')
-    const error = ref('')
-    const loading = ref(false)
+<script lang="ts">
+import { defineComponent, ref } from 'vue'
+import { supabase } from './supabase'
 
-    const signUp = async () => {
-      error.value = ''
+export default defineComponent({
+  name: 'SignUp',
+  setup() {
+    const email = ref<string>('')
+    const password = ref<string>('')
+    const error = ref<string | null>(null)
+    const loading = ref<boolean>(false)
+
+    const signUp = async (): Promise<void> => {
+      error.value = null
       loading.value = true
 
       try {
-        const { data, error: signupError } = await supabase.auth.signUp({
+        const { data, error: signUpError } = await supabase.auth.signUp({
           email: email.value,
           password: password.value,
         })
 
-        if (signupError) throw signupError
+        if (signUpError) throw signUpError
 
         console.log('User signed up successfully:', data)
         alert('Check your email to confirm your account!')
-      } catch (err) {
-        error.value = err.message || 'Error no good'
+      } catch (err: any) {
+        error.value = err.message || 'An error occurred during sign-up.'
         console.error('Error signing up:', err)
       } finally {
         loading.value = false
@@ -85,7 +87,7 @@ export default {
       signUp,
     }
   },
-}
+})
 </script>
 
 <style scoped>
