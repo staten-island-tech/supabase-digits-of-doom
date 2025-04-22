@@ -10,7 +10,7 @@
           Email
         </label>
         <input
-          v-model="email"
+          v-model="login.email"
           type="email"
           placeholder="Enter Email"
           name="email"
@@ -24,7 +24,7 @@
           Password
         </label>
         <input
-          v-model="password"
+          v-model="login.password"
           type="password"
           placeholder="Enter Password"
           name="password"
@@ -46,14 +46,16 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent, reactive, ref } from 'vue'
 import { supabase } from './supabase'
 
 export default defineComponent({
   name: 'SignUp',
   setup() {
-    const email = ref<string>('')
-    const password = ref<string>('')
+    const login = reactive({
+      email: '',
+      password: '',
+    })
     const error = ref<string | null>(null)
     const loading = ref<boolean>(false)
 
@@ -63,14 +65,13 @@ export default defineComponent({
 
       try {
         const { data, error: signUpError } = await supabase.auth.signUp({
-          email: email.value,
-          password: password.value,
+          email: login.email,
+          password: login.password,
         })
 
         if (signUpError) throw signUpError
 
         console.log('User signed up successfully:', data)
-        alert('Check your email to confirm your account!')
       } catch (err: any) {
         error.value = err.message || 'An error occurred during sign-up.'
         console.error('Error signing up:', err)
@@ -80,8 +81,7 @@ export default defineComponent({
     }
 
     return {
-      email,
-      password,
+      login,
       error,
       loading,
       signUp,
