@@ -135,6 +135,11 @@ let divisiondmg = 0;
 let additiondmg = 5;
 let subtractiondmg = 15.5;
 
+
+function ice() {
+
+}
+
 function add(){
 number += additiondmg;
 console.log(number);
@@ -173,6 +178,15 @@ distort();
 let turnNumber = 0;
 let turnLimit=5;
 
+function endStage() {
+  console.log("Calculating..")
+}
+
+function enemyMove() {
+  console.log("Enemy move");
+}
+
+
 function moveSelection() {
   console.log("Select your Operation.");
   for (let i = 0; i < operationsList.length; i++) {
@@ -181,11 +195,18 @@ function moveSelection() {
     }
   }
 }
+
 function startStage() {
   turnNumber = 0;
   console.log("Stage started");
-  moveSelection();
-  turnNumber++;
+  if (turnNumber <= turnLimit) {
+    moveSelection();
+    enemyMove();
+    turnNumber++;
+  } else {
+    console.log("Stage ended");
+    endStage();
+  }
 }
 
 
