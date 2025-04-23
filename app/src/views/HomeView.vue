@@ -1,5 +1,11 @@
+<template>
+   <div><HomeInstruction></HomeInstruction></div>
+</template>
+
+
 <script setup lang="ts">
 import TheWelcome from '../components/TheWelcome.vue'
+import HomeInstruction from '@/components/HomeInstruction.vue'
 const operationsList = [
     {
         name: 'Freezing Divider',
@@ -228,8 +234,4 @@ function startStage() {
 
 </script>
 
-<template>
-  <main>
-    <TheWelcome />
-  </main>
-</template>
+<style scoped></style>
