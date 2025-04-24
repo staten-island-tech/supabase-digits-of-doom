@@ -43,15 +43,15 @@ const operationsList = [
         numberRemaining: 0,
     },
     {
-        name: 'Wind Gust Doubler',
-        element: 'air',
+        name: 'Blizzarding Doubler',
+        element: 'ice',
         operation: 'doubler',
         selected: false,
         numberRemaining: 0,
     },
     {
-        name: 'Water Surge Tripler',
-        element: 'water',
+        name: 'Glacial Tripler',
+        element: 'ice',
         operation: 'tripler',
         selected: false,
         numberRemaining: 0,
@@ -162,7 +162,40 @@ const operationsList = [
         numberRemaining: 0,
     }
 ];
-// Paste your full operationsList array here
+
+let turnNumber = 0;
+let turnLimit=5;
+
+function endStage() {
+  console.log("Calculating..")
+}
+
+function enemyMove() {
+  console.log("Enemy move");
+}
+
+
+function moveSelection() {
+  console.log("Select your Operation.");
+  for (let i = 0; i < operationsList.length; i++) {
+    if (operationsList[i].selected === true) {
+      return operationsList[i].operation;
+    }
+  }
+}
+
+function startStage() {
+  turnNumber = 0;
+  console.log("Stage started");
+  if (turnNumber <= turnLimit) {
+    moveSelection();
+    enemyMove();
+    turnNumber++;
+  } else {
+    console.log("Stage ended");
+    endStage();
+  }
+}
 </script>
 
 <style scoped>
