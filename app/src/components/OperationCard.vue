@@ -18,7 +18,7 @@
     selected: boolean;
   };
 }>();
-const elementClass = computed(() => `element-${props.operation.element.toLowerCase()}`);
+const elementClass = computed(() => `element-${props.operation.element}`);
   </script>
   
   <style scoped>
