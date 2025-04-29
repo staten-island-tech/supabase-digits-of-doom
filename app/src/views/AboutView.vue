@@ -2,9 +2,10 @@
   <main>
     <div class="cards-container">
       <OperationCard
-        v-for="operation in operationsList"
-        :key="operation.name"
-        :operation="operation"
+      v-for="operation in operationsList"
+      :key="operation.name"
+      :operation="operation"
+      @click="() => selectOperation(operation.name)"
       />
     </div>
   </main>
@@ -12,7 +13,17 @@
 
 <script setup lang="ts">
 import OperationCard from '@/components/OperationCard.vue'
+import { ref } from 'vue';
 
+const selectedOperationName = ref<string | null>(null);
+
+function selectOperation(name: string) {
+  selectedOperationName.value = name;
+  operationsList.forEach(op => {
+    op.selected = (op.name === name);
+  });
+  console.log(selectedOperationName.value);
+}
 const operationsList = [
     {
         name: 'Freezing Divider',
