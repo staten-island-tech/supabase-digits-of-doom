@@ -2,7 +2,7 @@
   <div
     class="card"
     :class="[elementClass, { selected: operation.selected }]"
-    @click="$emit('click')"
+    @click="$emit('select')"
   >
     <h3>{{ operation.name }}</h3>
     <p>Element: {{ operation.element }}</p>

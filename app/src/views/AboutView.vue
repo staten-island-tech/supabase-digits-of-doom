@@ -5,7 +5,7 @@
       v-for="operation in operationsList"
       :key="operation.name"
       :operation="operation"
-      @click="() => selectOperation(operation.name)"
+      @select="selectOperation(operation.name)"
       />
     </div>
   </main>
@@ -16,6 +16,7 @@ import OperationCard from '@/components/OperationCard.vue'
 import { ref } from 'vue';
 
 const selectedOperationName = ref<string | null>(null);
+let selectedOperationList = [];
 
 function selectOperation(name: string) {
   selectedOperationName.value = name;
@@ -23,6 +24,11 @@ function selectOperation(name: string) {
     op.selected = (op.name === name);
   });
   console.log(selectedOperationName.value);
+  if (selectedOperationList.length <3) {
+    selectedOperationList.push(name);
+  } else if (selectedOperationList.length >= 3) {
+    selectedOperationList.splice(1,1);
+  }
 }
 const operationsList = [
     {
