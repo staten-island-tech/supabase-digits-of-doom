@@ -16,18 +16,25 @@ import OperationCard from '@/components/OperationCard.vue'
 import { ref } from 'vue';
 
 const selectedOperationName = ref<string | null>(null);
-let selectedOperationList = [];
+let selectedOperationList: string[] = [];
 
 function selectOperation(name: string) {
   selectedOperationName.value = name;
   operationsList.forEach(op => {
     op.selected = (op.name === name);
   });
+  if (selectedOperationList.includes(name)) {
+    alert("Operation has already selected. Please select a different operation.");
+    return;
+  }
   console.log(selectedOperationName.value);
   if (selectedOperationList.length <3) {
     selectedOperationList.push(name);
+    console.log(selectedOperationList)
   } else if (selectedOperationList.length >= 3) {
-    selectedOperationList.splice(1,1);
+    selectedOperationList.shift();
+    selectedOperationList.push(name);
+    console.log(selectedOperationList)
   }
 }
 const operationsList = [
