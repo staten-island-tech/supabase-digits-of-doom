@@ -187,39 +187,6 @@ const operationsList = [
     }
 ];
 
-let turnNumber = 0;
-let turnLimit=5;
-
-function endStage() {
-  console.log("Calculating..")
-}
-
-function enemyMove() {
-  console.log("Enemy move");
-}
-
-
-function moveSelection() {
-  console.log("Select your Operation.");
-  for (let i = 0; i < operationsList.length; i++) {
-    if (operationsList[i].selected === true) {
-      return operationsList[i].operation;
-    }
-  }
-}
-
-function startStage() {
-  turnNumber = 0;
-  console.log("Stage started");
-  if (turnNumber <= turnLimit) {
-    moveSelection();
-    enemyMove();
-    turnNumber++;
-  } else {
-    console.log("Stage ended");
-    endStage();
-  }
-}
 </script>
 
 <style scoped>
