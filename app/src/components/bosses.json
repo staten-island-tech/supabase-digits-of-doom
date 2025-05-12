@@ -1,4 +1,10 @@
 [
-    { "name": "Boss 1", "skills": ["-5", "^2"] },
-    { "name": "Boss 2", "skills": ["+10", "/2"] }
+    { "name": "Boss 1", "skills": ["-5", "*2"] },
+    { "name": "Boss 2", "skills": ["+10", "/2"] },
+    { "name": "Boss 3", "skills": ["*3", "-1"] },
+    { "name": "Boss 4", "skills": ["^2", "+5"] },
+    { "name": "Boss 5", "skills": ["-10", "/3"] },
+    { "name": "Boss 6", "skills": ["*2", "+1"] },
+    { "name": "Boss 7", "skills": ["-2", "^3"] },
+    { "name": "Boss 8", "skills": ["+20", "/4"] }
   ]
