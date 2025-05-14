@@ -1,6 +1,21 @@
 <template>
     <div class="home-screen">
       <h1 class="title">Digits of Doom</h1>
+      <svg width="100%" height="100" xmlns="http://www.w3.org/2000/svg">
+  <image 
+    href="app/public/division.png" 
+    x="-10%" 
+    y="25" 
+    width="50" 
+    height="50">
+    <animate 
+      attributeName="x" 
+      from="-10%" 
+      to="110%" 
+      dur="8s" 
+      repeatCount="indefinite" />
+  </image>
+</svg>
       <div class="menu">
         <button @click="startGame">Start Game</button>
         <button @click="">Settings</button>
@@ -17,7 +32,7 @@
   }
   
   </script>
-  
+    
   <style scoped>
   .home-screen {
     display: flex;
@@ -59,3 +74,5 @@
     border-radius: 10px;
   }
   </style>
+
+  
