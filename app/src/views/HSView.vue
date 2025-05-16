@@ -3,7 +3,7 @@
       <h1 class="title">Digits of Doom</h1>
       <svg width="100%" height="100" xmlns="http://www.w3.org/2000/svg">
   <image 
-    href="app/public/division.png" 
+    href="/public/division.png" 
     x="-10%" 
     y="25" 
     width="50" 
@@ -13,7 +13,32 @@
       from="-10%" 
       to="110%" 
       dur="8s" 
+      begin="0s"
       repeatCount="indefinite" />
+  </image>
+</svg>
+
+<svg width="100%" height="100" xmlns="http://www.w3.org/2000/svg">
+  <image 
+    href="/public/percent.png" 
+    x="-10%" 
+    y="25" 
+    width="50" 
+    height="50">
+    <animate 
+      attributeName="x" 
+      from="-10%" 
+      to="110%" 
+      dur="8s" 
+      begin="0s"
+      repeatCount="indefinite" />
+      <animate 
+        attributeName="y" 
+        from="50%" 
+        to="100%" 
+        dur="8s" 
+        begin="0s"
+        repeatCount="indefinite" />
   </image>
 </svg>
       <div class="menu">
