@@ -4,16 +4,16 @@
       <svg width="100%" height="100" xmlns="http://www.w3.org/2000/svg">
   <image 
     href="/public/division.png" 
-    x="-10%" 
+    x="-10vw" 
     y="25" 
     width="50" 
     height="50">
     <animate 
       attributeName="x" 
-      from="-10%" 
-      to="110%" 
+      from="-10vw" 
+      to="110vw" 
       dur="8s" 
-      begin="0s"
+      begin=".3s"
       repeatCount="indefinite" />
   </image>
 </svg>
@@ -21,23 +21,23 @@
 <svg width="100%" height="100" xmlns="http://www.w3.org/2000/svg">
   <image 
     href="/public/percent.png" 
-    x="-10%" 
-    y="25" 
+    x="-10vw" 
+    y="10vh" 
     width="50" 
     height="50">
     <animate 
       attributeName="x" 
-      from="-10%" 
-      to="110%" 
+      from="-10vw" 
+      to="110vw" 
       dur="8s" 
-      begin="0s"
+      begin=".3s"
       repeatCount="indefinite" />
-      <animate 
+    <animate 
         attributeName="y" 
-        from="50%" 
-        to="100%" 
+        from="50vh" 
+        to="60vh" 
         dur="8s" 
-        begin="0s"
+        begin="0.3s"
         repeatCount="indefinite" />
   </image>
 </svg>
