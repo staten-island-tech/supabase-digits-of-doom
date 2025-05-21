@@ -1,13 +1,14 @@
 <template>
   <div>
-    <div class="card" :class="elementClass">
-      <h3>{{ ability.name }}</h3>
-      <p>Element: {{ ability.element }}</p>
-      <p>Power: {{ ability.power }}</p>
+    <div class="card" v-for="boss in bossMoves" :key="boss">
+      <h3>{{ boss.name }}</h3>
+      <p>Skills: {{ boss.skills }}</p>
     </div>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import bossMoves from './bosses.json'
+</script>
 
 <style scoped></style>

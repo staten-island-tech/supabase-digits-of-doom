@@ -1,0 +1,126 @@
+{
+    "name": "Freezing Divider",
+    "element": "ice",
+    "operation": "divide",
+    "selected": false,
+  },
+  {
+    "name": "Flaming Multiplier",
+    "element": "fire",
+    "operation": "multiply",
+    "selected": false,
+  },
+  {
+    "name": "Earthquake Adder",
+    "element": "earth",
+    "operation": "add",
+    "selected": false,
+  },
+  {
+    "name": "Thunder Striker Subtractor",
+    "element": "electricity",
+    "operation": "subtract",
+    "selected": false,
+  },
+  {
+    "name": "Blizzarding Doubler",
+    "element": "ice",
+    "operation": "doubler",
+    "selected": false,
+  },
+  {
+    "name": "Glacial Tripler",
+    "element": "ice",
+    "operation": "tripler",
+    "selected": false,
+  },
+  {
+    "name": "Shadow Inverter",
+    "element": "darkness",
+    "operation": "invert", // Inverts the number (e.g., -x)
+    "selected": false,
+  },
+  {
+    "name": "Light Amplifier",
+    "element": "light",
+    "operation": "amplify", // Increases the number by a factor (e.g., x * 1.5)
+    "selected": false,
+  },
+  {
+    "name": "Gravity Puller",
+    "element": "gravity",
+    "operation": "pull", // Reduces the number towards zero (like floor function)
+    "selected": false,
+  },
+  {
+    "name": "Magnetic Reverser",
+    "element": "magnet",
+    "operation": "reverse", // Reverses the sign of the number (e.g., -x -> x)
+    "selected": false,
+  },
+  {
+    "name": "Crystal Splitter",
+    "element": "crystal",
+    "operation": "split", // Splits the number into equal parts (e.g., 6 -> 3, 3)
+    "selected": false,
+  },
+  {
+    "name": "Poison Decayer",
+    "element": "poison",
+    "operation": "decay", // Slowly reduces the number over time (e.g., x -> x - 1 per turn)
+    "selected": false,
+  },
+  {
+    "name": "Time Freezer",
+    "element": "time",
+    "operation": "freeze", // Freezes the current value for a set number of turns
+    "selected": false,
+  },
+  {
+    "name": "Vortex Twister",
+    "element": "vortex",
+    "operation": "twist", // Randomizes the number within a given range
+    "selected": false,
+  },
+  {
+    "name": "Solar Reflector",
+    "element": "solar",
+    "operation": "reflect", // Mirrors the value based on certain criteria (e.g., positive -> negative)
+    "selected": false,
+  },
+  {
+    "name": "Lunar Reshaper",
+    "element": "moon",
+    "operation": "reshape", // Alters the number based on a pattern or formula
+    "selected": false,
+  },
+  {
+    "name": "Nebula Distorter",
+    "element": "nebula",
+    "operation": "distort", // Changes the number unpredictably, creating chaos
+    "selected": false,
+  },
+  {
+    "name": "Magnet Puller",
+    "element": "magnet",
+    "operation": "pull", // Pulls a value towards a target number
+    "selected": false,
+  },
+  {
+    "name": "Tornado Swapper",
+    "element": "wind",
+    "operation": "swap", // Swaps the values between two numbers
+    "selected": false,
+  },
+  {
+    "name": "Plasma Heater",
+    "element": "plasma",
+    "operation": "heat", // Increases the number exponentially (e.g., x * x)
+    "selected": false,
+  },
+  {
+    "name": "Tidal Push",
+    "element": "water",
+    "operation": "push", // Pushes the number in a specific direction (e.g., increase or decrease)
+    "selected": false,
+  }
