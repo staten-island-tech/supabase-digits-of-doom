@@ -15,9 +15,7 @@
 import OperationCard from '@/components/OperationCard.vue'
 import abilityMoves from '@/components/abilityMoves.vue'
 
-import operationsList from
-
-let turnNumber = 0
+/* let turnNumber = 0
 let turnLimit = 5
 
 function endStage() {
@@ -48,7 +46,7 @@ function startStage() {
     console.log('Stage ended')
     endStage()
   }
-}
+} */
 </script>
 
 <style scoped>
