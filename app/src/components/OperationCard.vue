@@ -1,11 +1,15 @@
 <template>
-    <div class="card" :class="elementClass">
-      <h3>{{ operation.name }}</h3>
-      <p>Element: {{ operation.element }}</p>
-      <p>Effect: {{ operation.operation }}</p>
-      <p>Uses Left: {{ operation.numberRemaining }}</p>
-    </div>
-  </template>
+  <div
+    class="card"
+    :class="[elementClass, { selected: operation.selected }]"
+    @click="$emit('select')"
+  >
+    <h3>{{ operation.name }}</h3>
+    <p>Element: {{ operation.element }}</p>
+    <p>Effect: {{ operation.operation }}</p>
+    <p>Uses Left: {{ operation.numberRemaining }}</p>
+  </div>
+</template>
   
   <script setup lang="ts">
   import { computed } from 'vue';
@@ -18,7 +22,7 @@
     selected: boolean;
   };
 }>();
-const elementClass = computed(() => `element-${props.operation.element.toLowerCase()}`);
+const elementClass = computed(() => `element-${props.operation.element}`);
   </script>
   
   <style scoped>
@@ -30,7 +34,13 @@ const elementClass = computed(() => `element-${props.operation.element.toLowerCa
     width: 200px;
     background-color: #fff;
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.2s, outline 0.2s;
   }
+  .selected {
+  outline: 3px solid #007bff;
+  transform: scale(1.05);
+}
   .element-fire {
   background-color: #ffdddd;
   border-color: #ff6b6b;

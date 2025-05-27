@@ -5,6 +5,7 @@
         v-for="operation in operationsList"
         :key="operation.name"
         :operation="operation"
+        @select="selectOperation(operation.name)"
       />
     </div>
     <abilityMoves />
