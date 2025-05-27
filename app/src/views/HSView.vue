@@ -1,5 +1,37 @@
 <template>
     <div class="home-screen">
+      <svg width="100%" height="100" xmlns="http://www.w3.org/2000/svg">
+  <image 
+    href="/public/subtraction.png" 
+    x="-10vw" 
+    y="25" 
+    width="50" 
+    height="50">
+    <animate 
+      attributeName="x" 
+      from="-10vw" 
+      to="110vw" 
+      dur="7s" 
+      begin=".3s"
+      repeatCount="indefinite" />
+  </image>
+</svg>
+<svg width="100%" height="100" xmlns="http://www.w3.org/2000/svg">
+  <image 
+    href="/public/plus.png" 
+    x="-10vw" 
+    y="25" 
+    width="50" 
+    height="50">
+    <animate 
+      attributeName="x" 
+      from="-10vw" 
+      to="110vw" 
+      dur="5s" 
+      begin=".3s"
+      repeatCount="indefinite" />
+  </image>
+  </svg>
       <h1 class="title">Digits of Doom</h1>
       <svg width="100%" height="100" xmlns="http://www.w3.org/2000/svg">
   <image 
@@ -12,7 +44,7 @@
       attributeName="x" 
       from="-10vw" 
       to="110vw" 
-      dur="8s" 
+      dur="6s" 
       begin=".3s"
       repeatCount="indefinite" />
   </image>
@@ -22,7 +54,6 @@
   <image 
     href="/public/percent.png" 
     x="-10vw" 
-    y="10vh" 
     width="50" 
     height="50">
     <animate 
@@ -32,20 +63,28 @@
       dur="8s" 
       begin=".3s"
       repeatCount="indefinite" />
-    <animate 
-        attributeName="y" 
-        from="50vh" 
-        to="60vh" 
-        dur="8s" 
-        begin="0.3s"
-        repeatCount="indefinite" />
   </image>
 </svg>
       <div class="menu">
         <button @click="startGame">Start Game</button>
         <button @click="">Settings</button>
       </div>
-
+      <svg width="100%" height="100" xmlns="http://www.w3.org/2000/svg">
+  <image 
+    href="/public/multiplacation.png" 
+    x="-10vw" 
+    y="25" 
+    width="50" 
+    height="50">
+    <animate 
+      attributeName="x" 
+      from="-10vw" 
+      to="110vw" 
+      dur="4s" 
+      begin=".3s"
+      repeatCount="indefinite" />
+  </image>
+  </svg>
     </div>
   </template>
   
