@@ -1,6 +1,6 @@
 <template>
   <div class="home-screen">
-    <svg width="100%" height="100" xmlns="http://www.w3.org/2000/svg">
+    <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
       <image href="/public/subtraction.png" x="-10vw" y="25" width="50" height="50">
         <animate
           attributeName="x"
@@ -12,7 +12,7 @@
         />
       </image>
     </svg>
-    <svg width="100%" height="100" xmlns="http://www.w3.org/2000/svg">
+    <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
       <image href="/public/plus.png" x="-10vw" y="25" width="50" height="50">
         <animate
           attributeName="x"
@@ -25,7 +25,7 @@
       </image>
     </svg>
     <h1 class="title">Digits of Doom</h1>
-    <svg width="100%" height="100" xmlns="http://www.w3.org/2000/svg">
+    <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
       <image href="/public/division.png" x="-10vw" y="25" width="50" height="50">
         <animate
           attributeName="x"
@@ -38,7 +38,7 @@
       </image>
     </svg>
 
-    <svg width="100%" height="100" xmlns="http://www.w3.org/2000/svg">
+    <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
       <image href="/public/percent.png" x="-10vw" width="50" height="50">
         <animate
           attributeName="x"
@@ -54,7 +54,7 @@
       <router-link :to="{ path: '/level1' }"><button>Login</button></router-link>
       <button @click="">Settings</button>
     </div>
-    <svg width="100%" height="100" xmlns="http://www.w3.org/2000/svg">
+    <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
       <image href="/public/multiplacation.png" x="-10vw" y="25" width="50" height="50">
         <animate
           attributeName="x"

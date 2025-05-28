@@ -41,7 +41,11 @@
           {{ loading ? 'Signing Up...' : 'Sign Up' }}
         </button></router-link
       >
-
+      <router-link :to="{ path: '/login' }"
+        ><p class="text-center text-[0.875rem] text-gray-600 hover:text-green-600 cursor-pointer">
+          Already have an account? Login
+        </p></router-link
+      >
       <p v-if="error" class="text-red-600 text-center text-[0.875rem]">{{ error }}</p>
     </div>
   </div>
