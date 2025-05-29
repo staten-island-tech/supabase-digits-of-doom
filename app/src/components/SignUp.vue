@@ -33,7 +33,7 @@
         />
       </div>
 
-      <router-link :to="{ path: '/HS' }"
+      <router-link :to="{ path: '/login' }"
         ><button
           @click="signUp"
           class="w-full h-[2.75rem] sm:h-[3rem] text-[1rem] sm:text-[1.125rem] font-semibold text-white bg-green-600 rounded hover:bg-green-700 focus:ring-[0.125rem] focus:ring-green-500"
