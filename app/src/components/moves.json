@@ -1,0 +1,126 @@
+[{
+    "name": "Freezing Divider",
+    "element": "ice",
+    "operation": "divide",
+    "selected": false
+  },
+  {
+    "name": "Flaming Multiplier",
+    "element": "fire",
+    "operation": "multiply",
+    "selected": false
+  },
+  {
+    "name": "Earthquake Adder",
+    "element": "earth",
+    "operation": "add",
+    "selected": false
+  },
+  {
+    "name": "Thunder Striker Subtractor",
+    "element": "electricity",
+    "operation": "subtract",
+    "selected": false
+  },
+  {
+    "name": "Blizzarding Doubler",
+    "element": "ice",
+    "operation": "doubler",
+    "selected": false
+  },
+  {
+    "name": "Glacial Tripler",
+    "element": "ice",
+    "operation": "tripler",
+    "selected": false
+  },
+  {
+    "name": "Shadow Inverter",
+    "element": "darkness",
+    "operation": "invert", 
+    "selected": false
+  },
+  {
+    "name": "Light Amplifier",
+    "element": "light",
+    "operation": "amplify", 
+    "selected": false
+  },
+  {
+    "name": "Gravity Puller",
+    "element": "gravity",
+    "operation": "pull",
+    "selected": false
+  },
+  {
+    "name": "Magnetic Reverser",
+    "element": "magnet",
+    "operation": "reverse",
+    "selected": false
+  },
+  {
+    "name": "Crystal Splitter",
+    "element": "crystal",
+    "operation": "split",
+    "selected": false
+  },
+  {
+    "name": "Poison Decayer",
+    "element": "poison",
+    "operation": "decay", 
+    "selected": false
+  },
+  {
+    "name": "Time Freezer",
+    "element": "time",
+    "operation": "freeze",
+    "selected": false
+  },
+  {
+    "name": "Vortex Twister",
+    "element": "vortex",
+    "operation": "twist",
+    "selected": false
+  },
+  {
+    "name": "Solar Reflector",
+    "element": "solar",
+    "operation": "reflect",
+    "selected": false
+  },
+  {
+    "name": "Lunar Reshaper",
+    "element": "moon",
+    "operation": "reshape",
+    "selected": false
+  },
+  {
+    "name": "Nebula Distorter",
+    "element": "nebula",
+    "operation": "distort",
+    "selected": false
+  },
+  {
+    "name": "Magnet Puller",
+    "element": "magnet",
+    "operation": "pull",
+    "selected": false
+  },
+  {
+    "name": "Tornado Swapper",
+    "element": "wind",
+    "operation": "swap",
+    "selected": false
+  },
+  {
+    "name": "Plasma Heater",
+    "element": "plasma",
+    "operation": "heat",
+    "selected": false
+  },
+  {
+    "name": "Tidal Push",
+    "element": "water",
+    "operation": "push", 
+    "selected": false
+  }]
