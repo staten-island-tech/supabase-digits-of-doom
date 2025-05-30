@@ -1,5 +1,12 @@
 <template>
-  <div></div>
+  <div>
+    <image>
+    </image>
+  </div>
+  <div>
+  </div>
+  <div>
+  </div>
 </template>
 
 <script setup lang="ts"></script>
