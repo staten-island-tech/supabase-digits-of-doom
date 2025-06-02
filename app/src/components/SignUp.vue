@@ -53,7 +53,7 @@
 
 <script lang="ts">
 import { defineComponent, reactive, ref } from 'vue'
-import { supabase } from './supabase'
+import { supabase } from '../../supabase'
 
 export default defineComponent({
   name: 'SignUp',

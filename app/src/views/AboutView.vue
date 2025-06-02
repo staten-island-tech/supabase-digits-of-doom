@@ -7,8 +7,8 @@
         :operation="operation"
         @select="selectOperation(operation.name)"
       />
+      <abilityMoves />
     </div>
-    <abilityMoves />
   </main>
 </template>
 
