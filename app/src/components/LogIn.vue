@@ -3,7 +3,7 @@
     <div
       class="bg-white p-[1.5rem] sm:p-[2rem] rounded-lg shadow-lg max-w-[90%] sm:max-w-[30rem] w-full space-y-[1rem] sm:space-y-[1.5rem]"
     >
-      <h1 class="text-[1.5rem] sm:text-[1.875rem] font-bold text-center text-gray-800">Sign Up</h1>
+      <h1 class="text-[1.5rem] sm:text-[1.875rem] font-bold text-center text-gray-800">Login</h1>
 
       <div class="space-y-[0.75rem] sm:space-y-[1rem]">
         <label for="email" class="block text-[0.8rem] sm:text-[0.875rem] font-medium text-gray-700">
@@ -33,19 +33,13 @@
         />
       </div>
 
-      <router-link :to="{ path: '/login' }"
-        ><button
-          @click="signUp"
-          class="w-full h-[2.75rem] sm:h-[3rem] text-[1rem] sm:text-[1.125rem] font-semibold text-white bg-green-600 rounded hover:bg-green-700 focus:ring-[0.125rem] focus:ring-green-500"
-        >
-          {{ loading ? 'Signing Up...' : 'Sign Up' }}
-        </button></router-link
+      <button
+        @click="handleLogin"
+        class="w-full h-[2.75rem] sm:h-[3rem] text-[1rem] sm:text-[1.125rem] font-semibold text-white bg-green-600 rounded hover:bg-green-700 focus:ring-[0.125rem] focus:ring-green-500"
       >
-      <router-link :to="{ path: '/login' }"
-        ><p class="text-center text-[0.875rem] text-gray-600 hover:text-green-600 cursor-pointer">
-          Already have an account? Login
-        </p></router-link
-      >
+        {{ loading ? 'Logging In...' : 'Login' }}
+      </button>
+
       <p v-if="error" class="text-red-600 text-center text-[0.875rem]">{{ error }}</p>
     </div>
   </div>
@@ -53,34 +47,29 @@
 
 <script lang="ts">
 import { defineComponent, reactive, ref } from 'vue'
-import { supabase } from '../supabase'
+import { logIn } from '../auth'
+import { useRouter } from 'vue-router'
 
 export default defineComponent({
-  name: 'SignUp',
+  name: 'Login',
   setup() {
     const login = reactive({
       email: '',
       password: '',
     })
     const error = ref<string | null>(null)
-    const loading = ref<boolean>(false)
+    const loading = ref(false)
+    const router = useRouter()
 
-    const signUp = async (): Promise<void> => {
+    const handleLogin = async (): Promise<void> => {
       error.value = null
       loading.value = true
-
       try {
-        const { data, error: signUpError } = await supabase.auth.signUp({
-          email: login.email,
-          password: login.password,
-        })
-
-        if (signUpError) throw signUpError
-
-        console.log('User signed up successfully:', data)
+        await logIn({ email: login.email, password: login.password })
+        router.push('/')
       } catch (err: any) {
-        error.value = err.message || 'An error occurred during sign-up.'
-        console.error('Error signing up:', err)
+        error.value = err.message || 'Login failed.'
+        console.error(err)
       } finally {
         loading.value = false
       }
@@ -90,7 +79,7 @@ export default defineComponent({
       login,
       error,
       loading,
-      signUp,
+      handleLogin,
     }
   },
 })

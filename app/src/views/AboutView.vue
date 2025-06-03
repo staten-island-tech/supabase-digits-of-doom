@@ -7,6 +7,7 @@
         :operation="operation"
         @select="selectOperation(operation.name)"
       />
+      <abilityMoves />
     </div>
 
     <div class="mt-8 p-4 border-2 border-gray-300 rounded-lg max-w-2xl mx-auto bg-gray-100 text-center">
