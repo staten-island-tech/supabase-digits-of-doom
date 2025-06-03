@@ -74,6 +74,7 @@ export default defineComponent({
           email: login.email,
           password: login.password,
         })
+        console.log(data)
 
         if (signUpError) throw signUpError
 
