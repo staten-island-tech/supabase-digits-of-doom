@@ -13,7 +13,7 @@
       <h2 class="text-xl font-semibold text-gray-700 mb-4">Selected Operations</h2>
       <div class="flex flex-wrap justify-center gap-3">
         <div
-          v-for="operation in selectedOperationList"
+          v-for="operation in inventory.selectedOperationList"
           :key="operation"
           class="bg-blue-600 text-white px-4 py-2 rounded-md font-bold shadow">
           {{ operation }}
@@ -26,30 +26,12 @@
 <script setup lang="ts">
 import OperationCard from '@/components/OperationCard.vue'
 import { ref } from 'vue';
-const selectedOperationName = ref<string | null>(null);
-  const selectedOperationList = ref<string[]>([]);
+import { useInventoryStore } from '@/stores/inventory'
+const inventory = useInventoryStore()
 
 function selectOperation(name: string) {
-  selectedOperationName.value = name;
-  operationsList.forEach(op => {
-    op.selected = (op.name === name);
-  });
-
-  if (selectedOperationList.value.includes(name)) {
-    alert("Operation has already selected. Please select a different operation.");
-    return;
-  }
-  console.log(selectedOperationName.value);
-  if (selectedOperationList.value.length <3) {
-    selectedOperationList.value.push(name);
-    console.log(selectedOperationList)
-  } else if (selectedOperationList.value.length >= 3) {
-    selectedOperationList.value.shift();
-    selectedOperationList.value.push(name);
-    console.log(selectedOperationList)
-  }
+  inventory.addOperation(name)
 }
-
 let operationsList = [{
     "name": "Freezing Divider",
     "element": "ice",
