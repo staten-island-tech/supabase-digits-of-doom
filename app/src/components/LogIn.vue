@@ -66,7 +66,8 @@ export default defineComponent({
       loading.value = true
       try {
         await logIn({ email: login.email, password: login.password })
-        router.push('/')
+        error.value = null
+        router.push('/HS')
       } catch (err: any) {
         error.value = err.message || 'Login failed.'
         console.error(err)
