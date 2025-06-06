@@ -22,7 +22,7 @@ export const useGameStore = defineStore('game', () => {
 
   // Helper function to apply a skill
   const applySkill = (currentX: number, skill: string): number => {
-    const operatorMatch = skill.match(/^[+\-*/^%])(\d+)$/);
+    const operatorMatch = skill.match(/^[+\-*/^%](\d+)$/);
     if (!operatorMatch) throw new Error(`Invalid skill format: ${skill}`);
 
     const [, operator, operand] = operatorMatch;

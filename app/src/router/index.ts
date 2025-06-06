@@ -16,10 +16,17 @@ const router = createRouter({
     {
       path: '/level1',
       name: 'level1',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: () => import('../views/LevelOne.vue'),
+     },
+     {
+      path: '/level2',
+      name: 'level2',
+      component: () => import('../views/LevelTwo.vue'),
+     },
+     {
+      path: '/level3',
+      name: 'level3',
+      component: () => import('../views/LevelThree.vue'),
      },
      {
 

@@ -28,7 +28,12 @@
 
 <script setup lang="ts">
 import { useInventoryStore } from '@/stores/inventory'
+import { useGameStore } from '@/stores/gameStore';
+
+const game = useGameStore();
 const inventory = useInventoryStore()
+
+
 
 function logOperation(name: string) {
   console.log('Clicked operation:', name)
