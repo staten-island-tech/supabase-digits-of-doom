@@ -51,7 +51,7 @@
       </image>
     </svg>
     <div class="menu">
-      <router-link :to="{ path: '/level1' }"><button>Levels</button></router-link>
+      <router-link :to="{ path: '/LSelect' }"><button>Levels</button></router-link>
       <button @click="">Settings</button>
     </div>
     <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">

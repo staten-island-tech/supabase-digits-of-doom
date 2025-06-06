@@ -33,6 +33,12 @@ const router = createRouter({
       name: 'login',
       component: () => import('../views/LoginPlease.vue'),
     },
+    {
+
+     path: '/LSelect',
+     name: 'level select',
+     component: () => import('../views/LevelSelect.vue'),
+   },
   ],
 })
 
