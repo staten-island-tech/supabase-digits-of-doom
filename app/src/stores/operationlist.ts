@@ -1,4 +1,4 @@
-const operationsList = [
+export const operationsList = [
     {
         name: 'Freezing Divider',
         element: 'ice',
@@ -27,7 +27,7 @@ const operationsList = [
     {
         name: 'Water Surge Tripler',
         element: 'water',
-        operation: '*3',
+        operation: '*   3',
     },
     {
         name: 'Shadow Inverter',
@@ -39,6 +39,11 @@ const operationsList = [
         element: 'light',
         operation: '^2', 
     },
+    {
+        name: "Glacial Tripler",
+        element: "ice",
+        operation: '*3',
+      },
     {
         name: 'Gravity Puller',
         element: 'gravity',

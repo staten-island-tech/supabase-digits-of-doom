@@ -8,6 +8,7 @@ export const useGameStore = defineStore('game', () => {
   const playerSkills = ref<string[]>([]); // Dynamically set player skills
   const bosses = ref<{ name: string; skills: string[] }[]>([]); // Dynamically set bosses
   const currentBossIndex = ref(0);
+  const currentBoss = computed(() => bosses.value[currentBossIndex.value] || { name: '', skills: [] });
   const playerTurn = ref(true);
 
   // Operator mapping
@@ -22,14 +23,20 @@ export const useGameStore = defineStore('game', () => {
 
   // Helper function to apply a skill
   const applySkill = (currentX: number, skill: string): number => {
-    const operatorMatch = skill.match(/^[+\-*/^%](\d+)$/);
-    if (!operatorMatch) throw new Error(`Invalid skill format: ${skill}`);
-
-    const [, operator, operand] = operatorMatch;
+    skill = skill.trim(); // Just in case
+  
+    const operatorMatch = skill.match(/^([+\-*/^%])(-?\d+(\.\d+)?)$/);
+    if (!operatorMatch) {
+      throw new Error(`Invalid skill format: ${skill}`);
+    }
+  
+    const [, operator, operandStr] = operatorMatch;
     const operation = operators[operator as keyof typeof operators];
-    if (!operation) throw new Error(`Unknown operator: ${operator}`);
-
-    return operation(currentX, parseInt(operand, 10));
+    if (!operation) {
+      throw new Error(`Unknown operator: ${operator}`);
+    }
+  
+    return operation(currentX, parseFloat(operandStr));
   };
 
   // Minimax algorithm
@@ -101,16 +108,17 @@ export const useGameStore = defineStore('game', () => {
 
   const aiMove = () => {
     if (playerTurn.value) return;
-
-    const bestSkill = findBestBossMove();
-    x.value = applySkill(x.value, bestSkill);
-    playerTurn.value = true;
-
-    if (Math.abs(1000 - x.value) <= 0) {
-      currentBossIndex.value++; // Progress to the next boss
-    }
+  
+    setTimeout(() => {
+      const bestSkill = findBestBossMove();
+      x.value = applySkill(x.value, bestSkill);
+      playerTurn.value = true;
+  
+      if (Math.abs(1000 - x.value) <= 0) {
+        currentBossIndex.value++;
+      }
+    }, 1000); 
   };
-
   return {
     x,
     playerSkills,
