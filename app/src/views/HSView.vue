@@ -52,7 +52,7 @@
     </svg>
     <div class="menu">
       <router-link :to="{ path: '/LSelect' }"><button>Levels</button></router-link>
-      <button @click="">Settings</button>
+      <router-link :to="{ path: '/inventory' }"><button>Inventory</button></router-link>
     </div>
     <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
       <image href="/public/multiplacation.png" x="-10vw" y="25" width="50" height="50">
@@ -73,7 +73,7 @@
 import { ref } from 'vue'
 
 function startGame() {
-  alert('Starting the game...') // You can route to the game screen here
+  alert('Starting the game...')
 }
 </script>
 

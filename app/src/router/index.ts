@@ -39,6 +39,12 @@ const router = createRouter({
      name: 'level select',
      component: () => import('../views/LevelSelect.vue'),
    },
+   {
+
+     path: '/inventory',
+     name: 'inventory',
+     component: () => import('../views/Inventory.vue'),
+   },
   ],
 })
 

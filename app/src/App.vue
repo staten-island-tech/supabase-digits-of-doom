@@ -3,19 +3,6 @@ import { RouterLink, RouterView } from 'vue-router'
 </script>
 
 <template>
-  <header>
-    <div class="wrapper">
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-        <RouterLink to="/level1">Level 1</RouterLink>
-        <RouterLink to="/HS">Home Screen</RouterLink>
-        <RouterLink to="/login">Login</RouterLink>
-        <RouterLink to="/LSelect">Level Select</RouterLink>
-      </nav>
-    </div>
-  </header>
-
   <RouterView />
 </template>
 
