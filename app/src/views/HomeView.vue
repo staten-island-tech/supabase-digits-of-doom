@@ -1,5 +1,10 @@
 <template>
-  <div><HomeInstruction /></div>
+  <div
+    class="h-screen bg-no-repeat bg-center"
+    style="background-image: url('../public/treesky.jpg'); background-size: cover; overflow: hidden"
+  >
+    <HomeInstruction />
+  </div>
 </template>
 
 <script setup lang="ts">

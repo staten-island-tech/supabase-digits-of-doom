@@ -1,33 +1,30 @@
-<!-- LevelMenu.vue -->
 <template>
-  <div class="flex flex-col items-center justify-center h-screen space-y-20">
-    <router-link :to="{ name: 'level1' }">
+  <div class="flex items-center justify-center h-screen">
+    <div class="flex flex-col justify-between items-center h-[50%]">
       <button
-        class="bg-pink-500 hover:bg-pink-700 text-white font-bold py-4 px-8 rounded-lg text-3xl"
+        class="w-80 bg-gradient-to-r from-pink-300 to-pink-700 hover:from-pink-500 hover:to-pink-700 text-white font-bold py-4 px-8 rounded-lg text-3xl"
+        @click="$router.push({ name: 'level1' })"
       >
         Level 1
       </button>
-    </router-link>
-    <router-link :to="{ name: '' }">
       <button
-        class="bg-pink-500 hover:bg-pink-700 text-white font-bold py-4 px-8 rounded-lg text-3xl"
+        class="w-80 bg-gradient-to-r from-pink-300 to-pink-700 hover:from-pink-500 hover:to-pink-700 text-white font-bold py-4 px-8 rounded-lg text-3xl"
+        @click="$router.push({ name: '' })"
       >
         Level 2
       </button>
-    </router-link>
-    <router-link :to="{ name: '' }">
       <button
-        class="bg-pink-500 hover:bg-pink-700 text-white font-bold py-4 px-8 rounded-lg text-3xl"
+        class="w-80 bg-gradient-to-r from-pink-300 to-pink-700 hover:from-pink-500 hover:to-pink-700 text-white font-bold py-4 px-8 rounded-lg text-3xl"
+        @click="$router.push({ name: '' })"
       >
         Level 3
       </button>
-    </router-link>
-    <router-link :to="{ name: 'HS' }">
       <button
-        class="bg-pink-500 hover:bg-pink-700 text-white font-bold py-4 px-8 rounded-lg text-3xl"
+        class="w-80 bg-gradient-to-r from-pink-300 to-pink-700 hover:from-pink-500 hover:to-pink-700 text-white font-bold py-4 px-8 rounded-lg text-3xl"
+        @click="$router.push({ name: 'HS' })"
       >
         Back
       </button>
-    </router-link>
+    </div>
   </div>
 </template>

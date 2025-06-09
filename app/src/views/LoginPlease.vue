@@ -1,5 +1,14 @@
 <template>
-  <div><LogIn /></div>
+  <div
+    style="
+      background-image: url('../public/closeflower.jpg');
+      background-size: cover;
+      overflow: hidden;
+    "
+    class="h-screen bg-no-repeat bg-center"
+  >
+    <LogIn />
+  </div>
 </template>
 
 <script setup>

@@ -2,7 +2,7 @@
   <div
     class="h-screen bg-no-repeat bg-center"
     style="
-      background-image: url('../public/housecherry2.jpg');
+      background-image: url('../public/japan-fantasy-landscape.jpg');
       background-size: 100% auto;
       overflow: hidden;
     "
