@@ -1,16 +1,23 @@
 <template>
-  <div>
-    <div class="text-center">
+  <div class="flex flex-col items-center justify-center min-h-screen">
+    <div class="text-center mb-6">
       <img
         v-if="game.playerTurn"
         src="/public/WhalenMichael.jpg"
         width="500"
         height="500"
         alt="Player Turn"
+        class="mx-auto"
       />
-      <img v-else src="/public/WhalenMouthBig.png" width="500" height="500" alt="Boss Turn" />
+      <img
+        v-else
+        src="/public/WhalenMouthBig.png"
+        width="500"
+        height="500"
+        alt="Boss Turn"
+        class="mx-auto"
+      />
     </div>
-
     <div class="text-center my-6">
       <p class="text-2xl font-bold">Current Value: {{ game.x }}</p>
       <p class="text-lg text-gray-600">Target: 1000</p>
@@ -20,8 +27,9 @@
       <p v-if="game.playerTurn">Your Turn</p>
       <p v-else>Boss is thinking...</p>
     </div>
+
     <div
-      class="mt-8 p-4 border-2 border-gray-300 rounded-lg max-w-2xl mx-auto bg-gray-100 text-center"
+      class="mt-8 p-4 border-2 border-gray-300 rounded-lg bg-gray-100 text-center w-full max-w-2xl"
     >
       <h2 class="text-xl font-semibold text-gray-700 mb-4">Selected Operations</h2>
       <div class="flex flex-wrap justify-center gap-3">
@@ -32,7 +40,7 @@
           :disabled="!game.playerTurn"
           @click="logOperation(operationName)"
         >
-          {{ operationName }}
+          {{ operationName }} ({{ getOperationSymbol(operationName) }})
         </button>
       </div>
     </div>
@@ -46,6 +54,11 @@ import { onMounted } from 'vue'
 
 const game = useGameStore()
 const inventory = useInventoryStore()
+
+function getOperationSymbol(name: string): string {
+  const op = operationsList.find((o) => o.name === name)
+  return op?.operation ?? '?'
+}
 
 onMounted(() => {
   const selectedNames = inventory.selectedOperationList
