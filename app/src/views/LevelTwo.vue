@@ -27,7 +27,7 @@
   </template>
   
   <script setup lang="ts">
-  import { useInventoryStore } from '@/stores/inventory'
+  import { useInventoryStore } from '@/stores/currentInv'
   const inventory = useInventoryStore()
   
   function logOperation(name: string) {

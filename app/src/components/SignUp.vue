@@ -51,50 +51,42 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, reactive, ref } from 'vue'
+<script setup lang="ts">
+import { ref } from 'vue'
 import { supabase } from '../supabase'
+import { useRouter } from 'vue-router'
 
-export default defineComponent({
-  name: 'SignUp',
-  setup() {
-    const login = reactive({
-      email: '',
-      password: '',
-    })
-    const error = ref<string | null>(null)
-    const loading = ref<boolean>(false)
+const router = useRouter()
 
-    const signUp = async (): Promise<void> => {
-      error.value = null
-      loading.value = true
-
-      try {
-        const { data, error: signUpError } = await supabase.auth.signUp({
-          email: login.email,
-          password: login.password,
-        })
-        console.log(data)
-
-        if (signUpError) throw signUpError
-
-        console.log('User signed up successfully:', data)
-      } catch (err: any) {
-        error.value = err.message || 'An error occurred during sign-up.'
-        console.error('Error signing up:', err)
-      } finally {
-        loading.value = false
-      }
-    }
-
-    return {
-      login,
-      error,
-      loading,
-      signUp,
-    }
-  },
+const login = ref({
+  email: '',
+  password: '',
 })
+const error = ref<string | null>(null)
+const loading = ref<boolean>(false)
+
+const signUp = async (): Promise<void> => {
+  error.value = null
+  loading.value = true
+
+  try {
+    const { data, error: signUpError } = await supabase.auth.signUp({
+      email: login.value.email,
+      password: login.value.password,
+    })
+    console.log(data)
+
+    if (signUpError) throw signUpError
+
+    console.log('User signed up successfully:', data)
+    router.push({ path: '/login' })
+  } catch (err: any) {
+    error.value = err.message || 'An error occurred during sign-up.'
+    console.error('Error signing up:', err)
+  } finally {
+    loading.value = false
+  }
+}
 </script>
 
 <style scoped>

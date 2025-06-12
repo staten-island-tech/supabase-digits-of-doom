@@ -58,7 +58,7 @@
           Levels
         </button></router-link
       >
-      <router-link :to="{ path: '/inventory' }"
+      <router-link :to="{ path: '/about' }"
         ><button class="px-4 py-2 bg-white rounded-lg shadow-lg text-black">
           Inventory
         </button></router-link

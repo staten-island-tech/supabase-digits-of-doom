@@ -1,26 +1,28 @@
 import { defineStore } from 'pinia';
+import { ref } from 'vue';
 
-interface AuthState {
-  isLoggedIn: boolean;
-  user: any | null;
-  id: any | null;
-}
+export const useAuthStore = defineStore('auth', () => {
+  const isLoggedIn = ref(false);
+  const user = ref<any | null>(null);
+  const id = ref<any | null>(null);
 
-export const useAuthStore = defineStore('auth', {
-  state: (): AuthState => ({
-    isLoggedIn: false,
-    user: null,
-    id: null,
-  }),
-  actions: {
-    setLoggedIn(id: any, user: any) {
-      this.isLoggedIn = true;
-      this.user = user;
-      this.id = id;
-    },
-    setLoggedOut() {
-      this.isLoggedIn = false;
-      this.user = null;
-    },
-  },
+  function setLoggedIn(newId: any, newUser: any) {
+    isLoggedIn.value = true;
+    user.value = newUser;
+    id.value = newId;
+  }
+
+  function setLoggedOut() {
+    isLoggedIn.value = false;
+    user.value = null;
+    id.value = null;
+  }
+
+  return {
+    isLoggedIn,
+    user,
+    id,
+    setLoggedIn,
+    setLoggedOut,
+  };
 });

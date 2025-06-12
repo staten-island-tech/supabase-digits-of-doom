@@ -7,41 +7,42 @@
     <h3>{{ operation.name }}</h3>
     <p>Element: {{ operation.element }}</p>
     <p>Effect: {{ operation.operation }}</p>
-    <p>Uses Left: {{ operation.numberRemaining }}</p>
   </div>
 </template>
-  
-  <script setup lang="ts">
-  import { computed } from 'vue';
-  const props = defineProps<{
+
+<script setup lang="ts">
+import { computed } from 'vue'
+const props = defineProps<{
   operation: {
-    name: string;
-    element: string;
-    operation: string;
-    numberRemaining: number;
-    selected: boolean;
-  };
-}>();
-const elementClass = computed(() => `element-${props.operation.element}`);
-  </script>
-  
-  <style scoped>
-  .card {
-    border: 2px solid #ccc;
-    padding: 1rem;
-    margin: 0.5rem;
-    border-radius: 10px;
-    width: 200px;
-    background-color: #fff;
-    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    transition: transform 0.2s, outline 0.2s;
+    name: string
+    element: string
+    operation: string
+    numberRemaining: number
+    selected: boolean
   }
-  .selected {
+}>()
+const elementClass = computed(() => `element-${props.operation.element}`)
+</script>
+
+<style scoped>
+.card {
+  border: 2px solid #ccc;
+  padding: 1rem;
+  margin: 0.5rem;
+  border-radius: 10px;
+  width: 200px;
+  background-color: #fff;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition:
+    transform 0.2s,
+    outline 0.2s;
+}
+.selected {
   outline: 3px solid #007bff;
   transform: scale(1.05);
 }
-  .element-fire {
+.element-fire {
   background-color: #ffdddd;
   border-color: #ff6b6b;
 }
@@ -82,5 +83,4 @@ const elementClass = computed(() => `element-${props.operation.element}`);
   background-color: #ffffe0;
   border-color: #fffacd;
 }
-
-  </style>
+</style>

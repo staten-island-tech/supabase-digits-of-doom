@@ -45,45 +45,33 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, reactive, ref } from 'vue'
+<script setup lang="ts">
+import { reactive, ref } from 'vue'
 import { logIn } from '../auth'
 import { useRouter } from 'vue-router'
 
-export default defineComponent({
-  name: 'Login',
-  setup() {
-    const login = reactive({
-      email: '',
-      password: '',
-    })
-    const error = ref<string | null>(null)
-    const loading = ref(false)
-    const router = useRouter()
-
-    const handleLogin = async (): Promise<void> => {
-      error.value = null
-      loading.value = true
-      try {
-        await logIn({ email: login.email, password: login.password })
-        error.value = null
-        router.push('/HS')
-      } catch (err: any) {
-        error.value = err.message || 'Login failed.'
-        console.error(err)
-      } finally {
-        loading.value = false
-      }
-    }
-
-    return {
-      login,
-      error,
-      loading,
-      handleLogin,
-    }
-  },
+const login = reactive({
+  email: '',
+  password: '',
 })
+const error = ref<string | null>(null)
+const loading = ref(false)
+const router = useRouter()
+
+const handleLogin = async (): Promise<void> => {
+  error.value = null
+  loading.value = true
+  try {
+    await logIn({ email: login.email, password: login.password })
+    error.value = null
+    router.push('/HS')
+  } catch (err: any) {
+    error.value = err.message || 'Login failed.'
+    console.error(err)
+  } finally {
+    loading.value = false
+  }
+}
 </script>
 
 <style scoped>

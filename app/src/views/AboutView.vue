@@ -2,21 +2,23 @@
   <main class="p-4">
     <div class="flex flex-wrap gap-4 justify-center">
       <OperationCard
-        v-for="operation in operationsList"
+        v-for="operation in operations"
         :key="operation.name"
         :operation="operation"
         @select="selectOperation(operation.name)"
       />
-      <abilityMoves />
     </div>
 
-    <div class="mt-8 p-4 border-2 border-gray-300 rounded-lg max-w-2xl mx-auto bg-gray-100 text-center">
+    <div
+      class="mt-8 p-4 border-2 border-gray-300 rounded-lg max-w-2xl mx-auto bg-gray-100 text-center"
+    >
       <h2 class="text-xl font-semibold text-gray-700 mb-4">Selected Operations</h2>
       <div class="flex flex-wrap justify-center gap-3">
         <div
           v-for="operation in inventory.selectedOperationList"
           :key="operation"
-          class="bg-blue-600 text-white px-4 py-2 rounded-md font-bold shadow">
+          class="bg-blue-600 text-white px-4 py-2 rounded-md font-bold shadow"
+        >
           {{ operation }}
         </div>
       </div>
@@ -26,139 +28,148 @@
 
 <script setup lang="ts">
 import OperationCard from '@/components/OperationCard.vue'
-import { ref } from 'vue';
-import { useInventoryStore } from '@/stores/inventory'
-const inventory = useInventoryStore()
+import { useInventoryStore } from '@/stores/currentInv'
+import { useOperationsListStore, fetchOperations } from '@/stores/Inventory'
+import { onMounted } from 'vue'
 
+const operations = useOperationsListStore().value
+
+onMounted(() => {
+  fetchOperations()
+})
+const inventory = useInventoryStore()
+console.log(operations)
 function selectOperation(name: string) {
-  inventory.addOperation(name)
+  useInventoryStore().addOperation({ name })
 }
-let operationsList = [{
-    "name": "Freezing Divider",
-    "element": "ice",
-    "operation": "divide",
-    "selected": false
+/* let operationsList = [
+  {
+    name: 'Freezing Divider',
+    element: 'ice',
+    operation: 'divide',
+    selected: false,
   },
   {
-    "name": "Flaming Multiplier",
-    "element": "fire",
-    "operation": "multiply",
-    "selected": false
+    name: 'Flaming Multiplier',
+    element: 'fire',
+    operation: 'multiply',
+    selected: false,
   },
   {
-    "name": "Earthquake Adder",
-    "element": "earth",
-    "operation": "add",
-    "selected": false
+    name: 'Earthquake Adder',
+    element: 'earth',
+    operation: 'add',
+    selected: false,
   },
   {
-    "name": "Thunder Striker Subtractor",
-    "element": "electricity",
-    "operation": "subtract",
-    "selected": false
+    name: 'Thunder Striker Subtractor',
+    element: 'electricity',
+    operation: 'subtract',
+    selected: false,
   },
   {
-    "name": "Blizzarding Doubler",
-    "element": "ice",
-    "operation": "doubler",
-    "selected": false
+    name: 'Blizzarding Doubler',
+    element: 'ice',
+    operation: 'doubler',
+    selected: false,
   },
   {
-    "name": "Glacial Tripler",
-    "element": "ice",
-    "operation": "tripler",
-    "selected": false
+    name: 'Glacial Tripler',
+    element: 'ice',
+    operation: 'tripler',
+    selected: false,
   },
   {
-    "name": "Shadow Inverter",
-    "element": "darkness",
-    "operation": "invert", 
-    "selected": false
+    name: 'Shadow Inverter',
+    element: 'darkness',
+    operation: 'invert',
+    selected: false,
   },
   {
-    "name": "Light Amplifier",
-    "element": "light",
-    "operation": "amplify", 
-    "selected": false
+    name: 'Light Amplifier',
+    element: 'light',
+    operation: 'amplify',
+    selected: false,
   },
   {
-    "name": "Gravity Puller",
-    "element": "gravity",
-    "operation": "pull",
-    "selected": false
+    name: 'Gravity Puller',
+    element: 'gravity',
+    operation: 'pull',
+    selected: false,
   },
   {
-    "name": "Magnetic Reverser",
-    "element": "magnet",
-    "operation": "reverse",
-    "selected": false
+    name: 'Magnetic Reverser',
+    element: 'magnet',
+    operation: 'reverse',
+    selected: false,
   },
   {
-    "name": "Crystal Splitter",
-    "element": "crystal",
-    "operation": "split",
-    "selected": false
+    name: 'Crystal Splitter',
+    element: 'crystal',
+    operation: 'split',
+    selected: false,
   },
   {
-    "name": "Poison Decayer",
-    "element": "poison",
-    "operation": "decay", 
-    "selected": false
+    name: 'Poison Decayer',
+    element: 'poison',
+    operation: 'decay',
+    selected: false,
   },
   {
-    "name": "Time Freezer",
-    "element": "time",
-    "operation": "freeze",
-    "selected": false
+    name: 'Time Freezer',
+    element: 'time',
+    operation: 'freeze',
+    selected: false,
   },
   {
-    "name": "Vortex Twister",
-    "element": "vortex",
-    "operation": "twist",
-    "selected": false
+    name: 'Vortex Twister',
+    element: 'vortex',
+    operation: 'twist',
+    selected: false,
   },
   {
-    "name": "Solar Reflector",
-    "element": "solar",
-    "operation": "reflect",
-    "selected": false
+    name: 'Solar Reflector',
+    element: 'solar',
+    operation: 'reflect',
+    selected: false,
   },
   {
-    "name": "Lunar Reshaper",
-    "element": "moon",
-    "operation": "reshape",
-    "selected": false
+    name: 'Lunar Reshaper',
+    element: 'moon',
+    operation: 'reshape',
+    selected: false,
   },
   {
-    "name": "Nebula Distorter",
-    "element": "nebula",
-    "operation": "distort",
-    "selected": false
+    name: 'Nebula Distorter',
+    element: 'nebula',
+    operation: 'distort',
+    selected: false,
   },
   {
-    "name": "Magnet Puller",
-    "element": "magnet",
-    "operation": "pull",
-    "selected": false
+    name: 'Magnet Puller',
+    element: 'magnet',
+    operation: 'pull',
+    selected: false,
   },
   {
-    "name": "Tornado Swapper",
-    "element": "wind",
-    "operation": "swap",
-    "selected": false
+    name: 'Tornado Swapper',
+    element: 'wind',
+    operation: 'swap',
+    selected: false,
   },
   {
-    "name": "Plasma Heater",
-    "element": "plasma",
-    "operation": "heat",
-    "selected": false
+    name: 'Plasma Heater',
+    element: 'plasma',
+    operation: 'heat',
+    selected: false,
   },
   {
-    "name": "Tidal Push",
-    "element": "water",
-    "operation": "push", 
-    "selected": false
-  }]
+    name: 'Tidal Push',
+    element: 'water',
+    operation: 'push',
+    selected: false,
+  },
+] */
 /* let turnNumber = 0
 
 
