@@ -1,34 +1,35 @@
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
+import { defineStore } from 'pinia'
 import { supabase } from '../supabase'
+import { useAuthStore } from './authStore'
 
-const operationsListStore = ref<any[]>([])
+export const useOperationsListStore = defineStore('inventory', () => {
+  const inventory = ref<any[]>([])
+  const authStore = useAuthStore()
 
-export const fetchOperations = async () => {
-  const {
-    data: { user },
-    error: authError
-  } = await supabase.auth.getUser()
+  console.log('useOperationsListStore initialized')
+  const fetchOperations = async () => {
+    const { data, error } = await supabase
+      .from('users')
+      .select('inventory')
+      .eq('id', authStore.id)
+      .single()
 
-  if (authError || !user) {
-    console.error('No logged-in user:', authError)
-    return
+    if (error) {
+      console.log('error', error)
+    } else {
+     console.log('data', data)
+      inventory.value = data.inventory || []
+    }
   }
 
-  const { data, error } = await supabase
-    .from('users')
-    .select('inventory')
-    .eq('id', user.id)
-    .single()
+  const operations = computed(() => inventory.value)
 
-  if (error) {
-    console.error('Error fetching user inventory:', error)
-  } else {
-    operationsListStore.value = data.inventory
+  return {
+    operations,
+    fetchOperations,
   }
-}
-
-export const useOperationsListStore = () => operationsListStore
-
+})
 
 /* export const operationsList = [
     {

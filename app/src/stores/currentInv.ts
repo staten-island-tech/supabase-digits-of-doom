@@ -3,30 +3,9 @@ import { ref } from 'vue'
 import { supabase } from '../supabase'
 import { useAuthStore } from './authStore'
 
-export const useInventoryStore = defineStore('inventory', () => {
-  const selectedOperationList = ref<{ name: string }[]>([])
+export const useInventoryStore = defineStore('currentinventory', () => {
   const authStore = useAuthStore()
-
-  async function loadInventory() {
-    if (!authStore.id) {
-      console.error('No user ID found in authStore')
-      return
-    }
-
-    const { data, error } = await supabase
-      .from('users')
-      .select('current_inventory')
-      .eq('id', authStore.id)
-      .single()
-
-    if (error) {
-      console.error('Failed to load inventory:', error)
-    } else if (data?.current_inventory) {
-      selectedOperationList.value = data.current_inventory
-    } else {
-      selectedOperationList.value = []
-    }
-  }
+  const selectedOperationList = ref<{ name: string }[]>([])
 
   async function addOperation(operation: { name: string }) {
     if (selectedOperationList.value.some(op => op.name === operation.name)) {
@@ -40,14 +19,9 @@ export const useInventoryStore = defineStore('inventory', () => {
 
     selectedOperationList.value.push(operation)
 
-    if (!authStore.id) {
-      console.error('No user ID found in authStore')
-      return
-    }
-
     const { error } = await supabase
       .from('users')
-      .update({ currentInventory: selectedOperationList.value })
+      .update({ current_inventory: selectedOperationList })
       .eq('id', authStore.id)
 
     if (error) {
@@ -55,5 +29,7 @@ export const useInventoryStore = defineStore('inventory', () => {
     }
   }
 
-  return { selectedOperationList, addOperation, loadInventory }
+  return { selectedOperationList, addOperation }
 })
+
+

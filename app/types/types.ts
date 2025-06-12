@@ -7,7 +7,6 @@ export interface LoginRequest {
      user: {
        id: string;
        email: string;
-       inventory: any[]; 
      };
      token: string;
    }

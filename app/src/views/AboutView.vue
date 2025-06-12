@@ -2,10 +2,10 @@
   <main class="p-4">
     <div class="flex flex-wrap gap-4 justify-center">
       <OperationCard
-        v-for="operation in operations"
-        :key="operation.name"
+        v-for="operation in operationStore.operations"
+        :key="operation"
         :operation="operation"
-        @select="selectOperation(operation.name)"
+        @click="currentInventory.addOperation({ name: operation.name })"
       />
     </div>
 
@@ -15,7 +15,7 @@
       <h2 class="text-xl font-semibold text-gray-700 mb-4">Selected Operations</h2>
       <div class="flex flex-wrap justify-center gap-3">
         <div
-          v-for="operation in inventory.selectedOperationList"
+          v-for="operation in operationsList"
           :key="operation"
           class="bg-blue-600 text-white px-4 py-2 rounded-md font-bold shadow"
         >
@@ -27,21 +27,23 @@
 </template>
 
 <script setup lang="ts">
+import { computed, onMounted } from 'vue'
 import OperationCard from '@/components/OperationCard.vue'
 import { useInventoryStore } from '@/stores/currentInv'
-import { useOperationsListStore, fetchOperations } from '@/stores/Inventory'
-import { onMounted } from 'vue'
-
-const operations = useOperationsListStore().value
-
+import { useOperationsListStore } from '@/stores/inventory'
+import { useAuthStore } from '@/stores/authStore'
+const authStore = useAuthStore()
+const currentInventory = useInventoryStore()
+const operationsList = computed(() => currentInventory.selectedOperationList)
+const operationStore = useOperationsListStore()
 onMounted(() => {
-  fetchOperations()
+  operationStore.fetchOperations()
 })
-const inventory = useInventoryStore()
-console.log(operations)
-function selectOperation(name: string) {
-  useInventoryStore().addOperation({ name })
-}
+
+console.log(operationStore.operations)
+console.log(authStore.id)
+console.log(currentInventory.selectedOperationList)
+
 /* let operationsList = [
   {
     name: 'Freezing Divider',

@@ -17,8 +17,6 @@ const props = defineProps<{
     name: string
     element: string
     operation: string
-    numberRemaining: number
-    selected: boolean
   }
 }>()
 const elementClass = computed(() => `element-${props.operation.element}`)

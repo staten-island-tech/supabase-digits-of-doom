@@ -17,15 +17,13 @@ export const logIn = async (credentials: LoginRequest): Promise<LoginResponse> =
     const loginResponse: LoginResponse = {
       user: {
         id: data.user.id,
-        email: data.user.email ?? '',
-        inventory: []
+        email: data.user.email ?? ''
       },
       token: data.session.access_token,
     };
 
     const authStore = useAuthStore();
-    authStore.setLoggedIn(data.user.id, data.session.access_token);
-
+     authStore.setLoggedIn(data.user.id, data.user);
     return loginResponse;
   } else {
     throw new Error('Session data is null');
