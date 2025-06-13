@@ -9,13 +9,13 @@
       </button>
       <button
         class="w-80 bg-gradient-to-r from-pink-300 to-pink-700 hover:from-pink-500 hover:to-pink-700 text-white font-bold py-4 px-8 rounded-lg text-3xl"
-        @click="$router.push({ name: '' })"
+        @click="$router.push({ name: 'level2' })"
       >
         Level 2
       </button>
       <button
         class="w-80 bg-gradient-to-r from-pink-300 to-pink-700 hover:from-pink-500 hover:to-pink-700 text-white font-bold py-4 px-8 rounded-lg text-3xl"
-        @click="$router.push({ name: '' })"
+        @click="$router.push({ name: 'level3' })"
       >
         Level 3
       </button>

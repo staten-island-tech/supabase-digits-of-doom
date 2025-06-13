@@ -1,28 +1,33 @@
 <template>
-  <main class="p-4">
-    <div class="flex flex-wrap gap-4 justify-center">
+  <main class="p-4 flex flex-col items-center justify-center">
+    <div class="flex flex-wrap gap-4 justify-center mb-10">
       <OperationCard
         v-for="operation in operationStore.operations"
         :key="operation"
         :operation="operation"
-        @click="currentInventory.addOperation({ name: operation.name })"
+        @click="currentInventory.addOperation(operation)"
       />
     </div>
 
-    <div
-      class="mt-8 p-4 border-2 border-gray-300 rounded-lg max-w-2xl mx-auto bg-gray-100 text-center"
-    >
+    <div class="w-full max-w-xl p-6 border-2 border-gray-300 rounded-lg bg-gray-100 text-center">
       <h2 class="text-xl font-semibold text-gray-700 mb-4">Selected Operations</h2>
       <div class="flex flex-wrap justify-center gap-3">
         <div
           v-for="operation in operationsList"
-          :key="operation"
+          :key="operation.name"
           class="bg-blue-600 text-white px-4 py-2 rounded-md font-bold shadow"
         >
-          {{ operation }}
+          {{ operation.name }}
         </div>
       </div>
     </div>
+
+    <button
+      class="mt-6 bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-6 rounded-lg shadow"
+      @click="$router.push('/HS')"
+    >
+      Back
+    </button>
   </main>
 </template>
 
@@ -32,180 +37,13 @@ import OperationCard from '@/components/OperationCard.vue'
 import { useInventoryStore } from '@/stores/currentInv'
 import { useOperationsListStore } from '@/stores/inventory'
 import { useAuthStore } from '@/stores/authStore'
+
 const authStore = useAuthStore()
 const currentInventory = useInventoryStore()
 const operationsList = computed(() => currentInventory.selectedOperationList)
 const operationStore = useOperationsListStore()
+
 onMounted(() => {
   operationStore.fetchOperations()
 })
-
-console.log(operationStore.operations)
-console.log(authStore.id)
-console.log(currentInventory.selectedOperationList)
-
-/* let operationsList = [
-  {
-    name: 'Freezing Divider',
-    element: 'ice',
-    operation: 'divide',
-    selected: false,
-  },
-  {
-    name: 'Flaming Multiplier',
-    element: 'fire',
-    operation: 'multiply',
-    selected: false,
-  },
-  {
-    name: 'Earthquake Adder',
-    element: 'earth',
-    operation: 'add',
-    selected: false,
-  },
-  {
-    name: 'Thunder Striker Subtractor',
-    element: 'electricity',
-    operation: 'subtract',
-    selected: false,
-  },
-  {
-    name: 'Blizzarding Doubler',
-    element: 'ice',
-    operation: 'doubler',
-    selected: false,
-  },
-  {
-    name: 'Glacial Tripler',
-    element: 'ice',
-    operation: 'tripler',
-    selected: false,
-  },
-  {
-    name: 'Shadow Inverter',
-    element: 'darkness',
-    operation: 'invert',
-    selected: false,
-  },
-  {
-    name: 'Light Amplifier',
-    element: 'light',
-    operation: 'amplify',
-    selected: false,
-  },
-  {
-    name: 'Gravity Puller',
-    element: 'gravity',
-    operation: 'pull',
-    selected: false,
-  },
-  {
-    name: 'Magnetic Reverser',
-    element: 'magnet',
-    operation: 'reverse',
-    selected: false,
-  },
-  {
-    name: 'Crystal Splitter',
-    element: 'crystal',
-    operation: 'split',
-    selected: false,
-  },
-  {
-    name: 'Poison Decayer',
-    element: 'poison',
-    operation: 'decay',
-    selected: false,
-  },
-  {
-    name: 'Time Freezer',
-    element: 'time',
-    operation: 'freeze',
-    selected: false,
-  },
-  {
-    name: 'Vortex Twister',
-    element: 'vortex',
-    operation: 'twist',
-    selected: false,
-  },
-  {
-    name: 'Solar Reflector',
-    element: 'solar',
-    operation: 'reflect',
-    selected: false,
-  },
-  {
-    name: 'Lunar Reshaper',
-    element: 'moon',
-    operation: 'reshape',
-    selected: false,
-  },
-  {
-    name: 'Nebula Distorter',
-    element: 'nebula',
-    operation: 'distort',
-    selected: false,
-  },
-  {
-    name: 'Magnet Puller',
-    element: 'magnet',
-    operation: 'pull',
-    selected: false,
-  },
-  {
-    name: 'Tornado Swapper',
-    element: 'wind',
-    operation: 'swap',
-    selected: false,
-  },
-  {
-    name: 'Plasma Heater',
-    element: 'plasma',
-    operation: 'heat',
-    selected: false,
-  },
-  {
-    name: 'Tidal Push',
-    element: 'water',
-    operation: 'push',
-    selected: false,
-  },
-] */
-/* let turnNumber = 0
-
-
-
-
-let turnLimit = 5
-
-function endStage() {
-  console.log('Calculating..')
-}
-
-function enemyMove() {
-  console.log('Enemy move')
-}
-
-function moveSelection() {
-  console.log('Select your Operation.')
-  for (let i = 0; i < operationsList.length; i++) {
-    if (operationsList[i].selected === true) {
-      return operationsList[i].operation
-    }
-  }
-}
-
-function startStage() {
-  turnNumber = 0
-  console.log('Stage started')
-  if (turnNumber <= turnLimit) {
-    moveSelection()
-    enemyMove()
-    turnNumber++
-  } else {
-    console.log('Stage ended')
-    endStage()
-  }
-} */
 </script>

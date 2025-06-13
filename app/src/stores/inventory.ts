@@ -3,12 +3,17 @@ import { defineStore } from 'pinia'
 import { supabase } from '../supabase'
 import { useAuthStore } from './authStore'
 
+interface GameOperation {
+  name: string
+  element: string
+  operation: string
+}
+
 export const useOperationsListStore = defineStore('inventory', () => {
-  const inventory = ref<any[]>([])
+  const inventory = ref<GameOperation[]>([])
   const authStore = useAuthStore()
 
-  console.log('useOperationsListStore initialized')
-  const fetchOperations = async () => {
+  const fetchOperations = async (): Promise<void> => {
     const { data, error } = await supabase
       .from('users')
       .select('inventory')
@@ -16,14 +21,13 @@ export const useOperationsListStore = defineStore('inventory', () => {
       .single()
 
     if (error) {
-      console.log('error', error)
+      console.error('Error fetching operations:', error)
     } else {
-     console.log('data', data)
       inventory.value = data.inventory || []
     }
   }
 
-  const operations = computed(() => inventory.value)
+  const operations = computed<GameOperation[]>(() => inventory.value)
 
   return {
     operations,

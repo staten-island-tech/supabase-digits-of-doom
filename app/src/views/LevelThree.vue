@@ -1,93 +1,208 @@
 <template>
-  <div class="flex flex-col items-center justify-center min-h-screen">
-    <div class="text-center mb-6">
-      <img
-        v-if="game.playerTurn"
-        src="/public/WhalenMichael.jpg"
-        width="500"
-        height="500"
-        alt="Player Turn"
-        class="mx-auto"
-      />
-      <img
-        v-else
-        src="/public/WhalenMouthBig.png"
-        width="500"
-        height="500"
-        alt="Boss Turn"
-        class="mx-auto"
-      />
-    </div>
-    <div class="text-center my-6">
-      <p class="text-2xl font-bold">Current Value: {{ game.x }}</p>
-      <p class="text-lg text-gray-600">Target: 1000</p>
-      <p class="text-md text-green-700">Score: {{ game.score }}</p>
-    </div>
-
-    <div class="text-center my-2 text-sm text-gray-500">
-      <p v-if="game.playerTurn">Your Turn</p>
-      <p v-else>Boss is thinking...</p>
-    </div>
-
-    <div class="mt-8 p-4 border-2 border-gray-300 rounded-lg bg-gray-100 text-center w-full max-w-2xl">
-      <h2 class="text-xl font-semibold text-gray-700 mb-4">Selected Operations</h2>
-      <div class="flex flex-wrap justify-center gap-3">
-        <button
-          v-for="operationName in inventory.selectedOperationList"
-          :key="operationName"
-          class="bg-blue-600 text-white px-4 py-2 rounded-md font-bold shadow hover:bg-blue-700 transition disabled:opacity-50"
-          :disabled="!game.playerTurn"
-          @click="logOperation(operationName)"
-        >
-          {{ operationName }} ({{ getOperationSymbol(operationName) }})
-        </button>
+  <div
+    class="flex flex-col items-center justify-center min-h-screen"
+    style="background-image: url('/hell_wallpaper.jpg'); background-size: cover; overflow: hidden"
+  >
+    <div v-if="!isGameOver">
+      <div class="text-center mb-6 w-full flex justify-center">
+        <img
+          v-if="game.playerTurn"
+          src="/WhalenMichael.jpg"
+          width="500"
+          height="500"
+          alt="Player Turn"
+          class="mx-auto"
+        />
+        <img
+          v-else
+          src="/Devil_whalen.png"
+          width="500"
+          height="500"
+          alt="Boss Turn"
+          class="mx-auto"
+        />
       </div>
+
+      <div class="text-center my-6 bg-white p-4 rounded-lg shadow-md">
+        <p class="text-2xl font-bold">Current Value: {{ game.x }}</p>
+        <p class="text-lg text-gray-600">Target: 1000</p>
+        <p class="text-md text-green-700">Score: {{ game.score }}</p>
+        <p class="text-sm text-gray-500">Round: {{ game.round }} / {{ game.maxRounds }}</p>
+      </div>
+
+      <div class="text-center my-2 text-sm text-gray-500">
+        <p v-if="game.playerTurn">Your Turn</p>
+        <p v-else>Boss is thinking...</p>
+      </div>
+
+      <div
+        class="mt-8 p-4 border-2 border-gray-300 rounded-lg bg-gray-100 text-center w-full max-w-2xl"
+      >
+        <h2 class="text-xl font-semibold text-gray-700 mb-4">Selected Operations</h2>
+        <div class="flex flex-wrap justify-center gap-3">
+          <button
+            v-for="op in selectedOperations"
+            :key="op.name"
+            class="bg-blue-600 text-white px-4 py-2 rounded-md font-bold shadow hover:bg-blue-700 transition disabled:opacity-50"
+            :disabled="!game.playerTurn || isGameOver"
+            @click="logOperation(op.operation)"
+          >
+            {{ op.name }} ({{ op.operation }})
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div v-else class="text-center bg-black bg-opacity-70 text-white p-8 rounded-lg">
+      <h1 class="text-4xl font-bold text-red-500 mb-4">Game Over</h1>
+      <p class="text-2xl text-white mb-2">Final Score: {{ game.score }}</p>
+      <p class="text-lg text-gray-300 mb-6">Thanks for playing!</p>
+
+      <div v-if="newOperationsAwarded.length > 0" class="mb-6 p-4 bg-gray-800 rounded-lg">
+        <h2 class="text-xl font-semibold mb-2 text-yellow-400">New Hellish Powers Unlocked!</h2>
+        <div class="flex flex-wrap justify-center gap-2">
+          <div
+            v-for="op in newOperationsAwarded"
+            :key="op.name"
+            class="bg-red-900 px-3 py-1 rounded-md text-white"
+          >
+            {{ op.name }} ({{ op.operation }})
+          </div>
+        </div>
+      </div>
+
+      <button
+        class="bg-red-700 text-white px-4 py-2 rounded-md hover:bg-red-800 transition"
+        @click="goBack"
+      >
+        Back to Level Select
+      </button>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { useInventoryStore } from '@/stores/inventory'
-import { useGameStore } from '@/stores/gameStore';
-import { onMounted } from 'vue'
-import { operationsList } from '@/stores/operationlist'
+import { computed, onMounted, watch, ref } from 'vue'
+import { useRouter } from 'vue-router'
+import { useInventoryStore } from '@/stores/currentInv'
+import { useGameStore } from '@/stores/gameStore'
+import { useAuthStore } from '@/stores/authStore'
+import { supabase } from '@/supabase'
 
-const game = useGameStore();
-const inventory = useInventoryStore()
-
-function getOperationSymbol(name: string): string {
-  const op = operationsList.find(o => o.name === name);
-  return op?.operation ?? '?';
+interface GameOperation {
+  name: string
+  element: string
+  operation: string
 }
+
+const game = useGameStore()
+const inventory = useInventoryStore()
+const auth = useAuthStore()
+const router = useRouter()
+
+const selectedOperations = computed(() => inventory.selectedOperationList)
+const isGameOver = computed(() => game.round > game.maxRounds)
+
+const hasPushedScore = ref(false)
+const newOperationsAwarded = ref<GameOperation[]>([])
+
+const operationsToAward: GameOperation[] = [
+  {
+    name: 'Poison Decayer',
+    element: 'poison',
+    operation: '-20',
+  },
+  {
+    name: 'Lunar Reshaper',
+    element: 'moon',
+    operation: '%2',
+  },
+  {
+    name: 'Solar Reflector',
+    element: 'solar',
+    operation: '^2',
+  },
+]
 
 onMounted(() => {
-  const selectedNames = inventory.selectedOperationList;
-
-  const playerInventory = selectedNames
-    .map(name => operationsList.find(op => op.name === name)?.operation)
-    .filter((op): op is string => typeof op === 'string');
-
-  const bossList3 = [
+  const playerInventory = selectedOperations.value.map((op) => op.operation)
+  const bossList1 = [
     {
-      name: 'Boss Level 3',
-      skills: ['-50', '*2', '/2'],
+      name: 'Devil Whalen',
+      skills: ['+100', '/-3', '^2'],
+    },
+  ]
+  game.initializeGame(500, playerInventory, bossList1)
+})
+
+watch(isGameOver, async (value) => {
+  if (value && !hasPushedScore.value && auth.id) {
+    hasPushedScore.value = true
+
+    const operationsToAdd = operationsToAward.filter(
+      (newOp) =>
+        !selectedOperations.value.some((existingOp) => existingOp.operation === newOp.operation),
+    )
+
+    if (operationsToAdd.length > 0) {
+      newOperationsAwarded.value = operationsToAdd
+      await updateSupabaseInventory(operationsToAdd)
+      await inventory.fetchInventory()
     }
-  ];
 
-  game.initializeGame(500, playerInventory, bossList3);
-});
+    if (auth.id) {
+      const { data: currentData, error: fetchError } = await supabase
+        .from('users')
+        .select('high_score')
+        .eq('id', auth.id)
+        .single()
 
+      if (!fetchError && currentData) {
+        const currentStage = 2
+        const currentHighScores =
+          Array.isArray(currentData.high_score) && currentData.high_score.length === 3
+            ? currentData.high_score
+            : [0, 0, 0]
 
-function logOperation(name: string) {
-  const op = operationsList.find(o => o.name === name);
-  if (!op) {
-    console.error(`Operation not found for name: ${name}`);
-    return;
+        if (currentStage >= 0 && currentStage <= 2) {
+          const roundedScore = Math.round(game.score)
+
+          if (roundedScore > currentHighScores[currentStage]) {
+            const newHighScores = [...currentHighScores]
+            newHighScores[currentStage] = roundedScore
+
+            await supabase.from('users').update({ high_score: newHighScores }).eq('id', auth.id)
+          }
+        }
+      }
+    }
   }
+})
 
-  game.performOperation(op.operation);
+async function updateSupabaseInventory(newOperations: GameOperation[]): Promise<void> {
+  if (!auth.id) return
+
+  const { data: currentData, error } = await supabase
+    .from('users')
+    .select('inventory')
+    .eq('id', auth.id)
+    .single()
+
+  if (!error && currentData) {
+    const currentInventory = currentData.inventory || []
+    const updatedInventory = [...currentInventory, ...newOperations]
+
+    await supabase.from('users').update({ inventory: updatedInventory }).eq('id', auth.id)
+  }
 }
 
+function logOperation(operation: string) {
+  game.performOperation(operation)
+}
+
+function goBack() {
+  router.push('/LSelect')
+}
 </script>
 
 <style scoped></style>
