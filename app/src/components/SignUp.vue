@@ -33,14 +33,13 @@
         />
       </div>
 
-      <router-link :to="{ path: '/login' }"
-        ><button
-          @click="signUp"
-          class="w-full h-[2.75rem] sm:h-[3rem] text-[1rem] sm:text-[1.125rem] font-semibold text-white bg-green-600 rounded hover:bg-green-700 focus:ring-[0.125rem] focus:ring-green-500"
-        >
-          {{ loading ? 'Signing Up...' : 'Sign Up' }}
-        </button></router-link
+      <button
+        @click="signUp"
+        :disabled="!login.email || !login.password"
+        class="w-full h-[2.75rem] sm:h-[3rem] text-[1rem] sm:text-[1.125rem] font-semibold text-white bg-green-600 rounded hover:bg-green-700 focus:ring-[0.125rem] focus:ring-green-500 disabled:opacity-50"
       >
+        {{ loading ? 'Signing Up...' : 'Sign Up' }}
+      </button>
       <router-link :to="{ path: '/login' }"
         ><p class="text-center text-[0.875rem] text-gray-600 hover:text-green-600 cursor-pointer">
           Already have an account? Login
