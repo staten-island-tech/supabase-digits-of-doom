@@ -1,7 +1,7 @@
 <template>
   <div
     class="h-screen bg-no-repeat bg-center"
-    style="background-image: url('/public/treesky.jpg'); background-size: cover; overflow: hidden"
+    style="background-image: url('/assets/treesky.jpg'); background-size: cover; overflow: hidden"
   >
     <HomeInstruction />
   </div>
