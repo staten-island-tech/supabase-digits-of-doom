@@ -1,9 +1,5 @@
 <template>
-  <div
-    class="card"
-    :class="[elementClass, { selected: operation.selected }]"
-    @click="$emit('select')"
-  >
+  <div class="card" :class="[elementClass]" @click="$emit('select')">
     <h3>{{ operation.name }}</h3>
     <p>Element: {{ operation.element }}</p>
     <p>Effect: {{ operation.operation }}</p>

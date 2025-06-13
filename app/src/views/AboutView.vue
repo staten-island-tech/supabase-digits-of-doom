@@ -3,7 +3,7 @@
     <div class="flex flex-wrap gap-4 justify-center mb-10">
       <OperationCard
         v-for="operation in operationStore.operations"
-        :key="operation"
+        :key="operation.name"
         :operation="operation"
         @click="currentInventory.addOperation(operation)"
       />

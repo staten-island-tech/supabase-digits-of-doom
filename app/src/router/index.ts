@@ -43,7 +43,7 @@ const router = createRouter({
     {
 
      path: '/LSelect',
-     name: 'level select',
+     name: 'levelSelect',
      component: () => import('../views/LevelSelect.vue'),
    },
   ],
