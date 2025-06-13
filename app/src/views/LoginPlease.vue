@@ -1,10 +1,6 @@
 <template>
   <div
-    style="
-      background-image: url('/public/closeflower.jpg');
-      background-size: cover;
-      overflow: hidden;
-    "
+    style="background-image: url('/closeflower.jpg'); background-size: cover; overflow: hidden"
     class="h-screen bg-no-repeat bg-center"
   >
     <LogIn />
