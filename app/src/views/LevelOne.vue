@@ -47,6 +47,12 @@
             {{ op.name }} ({{ op.operation }})
           </button>
         </div>
+        <button
+          class="bg-gray-700 text-white px-4 py-2 rounded-md hover:bg-gray-800"
+          @click="goBack"
+        >
+          Back to Level Select
+        </button>
       </div>
     </div>
 
