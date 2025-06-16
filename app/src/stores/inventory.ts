@@ -15,7 +15,7 @@ export const useOperationsListStore = defineStore('inventory', () => {
 
   const fetchOperations = async (): Promise<void> => {
     const { data, error } = await supabase
-      .from('users')
+      .from('user_data')
       .select('inventory')
       .eq('id', authStore.id)
       .single()
